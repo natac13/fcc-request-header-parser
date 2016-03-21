@@ -12,8 +12,11 @@ const removeFirst = R.drop(1);
 const removeLast = R.dropLast(1);
 const removePathens = R.compose(removeFirst, removeLast, R.head, findSoftware);
 
-
 app.get('/', function(req, res) {
+  res.redirect('/api/whoami')
+});
+
+app.get('/api/whoami', function(req, res) {
   const ip = new Address6(req.ip).to4().correctForm()
   const language = R.head(req.acceptsLanguages());
   const fullSoftware = req.headers['user-agent'];
